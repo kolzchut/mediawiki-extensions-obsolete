@@ -1,0 +1,47 @@
+div.wr-languagelinks {
+	max-width: 100%; 
+	margin: 5px;
+	background-color: white; 
+	border: 1px solid #CEDFF2;
+	padding: 0 .3em;
+}
+
+.wr-languagelinks-title {
+	text-align: left; 
+	font-weight: bold;
+}
+
+ul.wr-languagelinks-list {
+	line-height: 1em;
+}
+
+ul.no-bullets {
+	list-style-image: none;
+	list-style-type: none;	
+	margin-left: .5em;
+}
+
+div.wr-languagelinks-list-normal ul {
+	margin-top: .1em;
+}
+
+div.wr-languagelinks-list-flat div.wr-languagelinks-title {
+	display: inline;
+	font-weight: normal;
+}
+
+div.wr-languagelinks-list-flat ul {
+	display: inline;
+	margin: 0; 
+	padding: 0;
+}
+
+div.wr-languagelinks-list-flat li{
+  	display: inline; 
+  	list-style: none;
+  	padding: 0 0.2em;
+}
+
+div.wr-languagelinks-list-flat li a {
+	font-weight: bold;
+}

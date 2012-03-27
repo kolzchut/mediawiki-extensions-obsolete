@@ -1,0 +1,25 @@
+div#page-wrap {
+	font-size: 100% !important;
+	max-width: none;
+	
+}
+
+#page-wrap div#headerWrapper {
+	max-width: none;
+	width: auto;
+}
+
+div#header {
+	max-width: none;	
+}
+
+div#scrollPage { 
+	overflow: visible !important;	
+	height: auto !important;
+	width: auto !important;
+}
+
+#content a.external.text:after, #content a.external.autonumber:after {
+	/* Un-Expand URLs for printing */
+	content: "";
+}

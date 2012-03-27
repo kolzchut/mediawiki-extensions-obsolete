@@ -1,0 +1,1424 @@
+/*
+ * Any rules which should not be flipped automatically in right-to-left situations should be
+ * prepended with @noflip in a comment block. Images that should be embedded as base64 data-URLs
+ * should be prepended with @embed in a comment block.
+ * 
+ * This style-sheet employs a few CSS trick to accomplish compatibility with a wide range of web
+ * browsers. The most common trick is to use some styles in IE6 only. This is accomplished by using
+ * a rule that makes things work in IE6, and then following it with a rule that begins with
+ * "html > body" or use a child selector ">", which is ignored by IE6 because it does not support
+ * the child selector. You can spot this by looking for the "OVERRIDDEN BY COMPLIANT BROWSERS" and
+ * "IGNORED BY IE6" comments.
+ */
+
+/* Framework */
+html,
+body {
+	/*WR override*//*height: 100%;*/
+	margin: 0;
+	padding: 0;
+	font-family: arial, sans-serif; /*WR override*//*sans-serif*/;
+	font-size: 1em;
+}
+body {
+	background-color: #f3f3f3;
+	/* @embed */
+	/* WR override: */ /*background-image: url(images/page-base.png);*/
+	background-position: top left; /* WR addition */
+	background-repeat: repeat-x; /* WR addition */
+	background-color: #E7F5FF; /* WR addition */
+}
+
+/* Content */
+div#content {
+	/* WR override: no sidebar */ /* margin-left: 10em; */
+	position: relative;	/* WR addition: for fixed header */
+	/*top: 120px;*/		/* WR addition: for fixed header */
+	/*padding: 1em;*/
+	/* @embed */
+	background-image: url(images/border.png);
+	background-position: top left;
+	background-repeat: repeat-y;
+	background-color: white;
+	color: black;
+	direction: ltr;
+}
+/* Head */
+#mw-page-base {
+	height: 5.5em; /* WR override: more items on header */
+	background-color: white;
+	/* @embed */
+	background-image: url(images/page-fade.png);
+	background-position: bottom left;
+	background-repeat: repeat-x;
+}
+#mw-head-base {
+	margin-top: -5.5em;	/* WR override: */ /*margin-top: -5em;*/
+	margin-left: 0em;	/* WR override: no sidebar */ /*margin-left: 10em;*/
+	height: 4em;		/* WR override: */ /*height: 5em;*/
+	/* @embed */
+	background-image: url(images/border.png);
+	background-position: bottom left;
+	background-repeat: repeat-x;
+}
+div#mw-head {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+}
+div#mw-head h5 {
+	margin: 0;
+	padding: 0;
+}
+	/* Search */
+	#p-search h5 {
+		display: none;
+	}
+	/* @noflip */
+	#p-search {
+		float: left;
+	}
+	#p-search {
+		margin-right: 0.5em;
+		margin-left: 0.5em;
+	}
+	#p-search form,
+	#p-search input {
+		margin: 0;
+		margin-top: 0.4em;
+	}
+	.searchForm form {	
+		display: inline;		
+	}
+		div#simpleSearch {
+		display: inline-block;
+		vertical-align: bottom;
+		width: 16em;
+		height: 1.2em; /*1.4em;*/
+		/*margin-top: 0.65em;*/
+		position: relative;
+		min-height: 1px; /* Gotta trigger hasLayout for IE7 */
+		border: solid 1px #AAAAAA;
+		color: black;
+		background-color: white;
+		/* @embed */
+		background-image: url(images/search-fade.png);
+		background-position: top left;
+		background-repeat: repeat-x;
+	}
+	div#simpleSearch label {
+		/*
+		 * DON'T PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
+		 * this from ever being shown anyways.
+		*/
+		font-size: 1em;
+		top: 0.25em;
+		direction: ltr;
+	}
+	div#simpleSearch input {
+		color: black;
+		direction: ltr;
+	}
+	div#simpleSearch input:focus {
+		outline: none;
+	}
+	div#simpleSearch input.placeholder {
+		color: #999999;
+	}
+	div#simpleSearch input::-webkit-input-placeholder { 
+		color: #999999;
+	}
+	div#simpleSearch input#searchInput {
+		position: absolute;
+		height: 1.2em;
+		line-height: 1.2em;
+		top: 0;
+		left: 0;
+		width: 65%;
+		margin: 0;
+		padding: 0;
+		padding-left: 0.2em;
+		padding-top: 0.1em; /*0.2em;*/
+		/*padding-bottom: 0.2em;*/ /*0.2em;*/
+		outline: none;
+		border: none;
+		/*
+		 * DON'T PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
+		 * this from ever being shown anyways.
+		*/
+		font-size: 1em;
+		background-color: transparent;
+		direction: ltr;
+	}
+	div#simpleSearch button#searchButton {
+		position: absolute;
+		height: 1.2em;
+		line-height: 1.2em;
+		font-size: 1em;
+		font-weight: bold;
+		font-family: Arial, sans-serif;
+		width: 33%;
+		right: 0;
+		top: 0;
+		padding: 0;
+		/*padding-top: 0.1em;*/ /*0.2em;*/
+		/*padding-bottom: 0.1em;*/ /*0.2em;*/
+		/*padding-right: 0.4em;*/
+		margin: 0;
+		border: none;
+		cursor: pointer;
+		background-color: #D7EBF9;
+		border-left: 1px solid #AED0EA;
+		color: #2779AA;
+	}
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	div#simpleSearch button#searchButton img {
+		border: none;
+		margin: 0;
+		margin-top: -3px;
+		padding: 0;
+	}
+	/* IGNORED BY IE6 */
+	div#simpleSearch button#searchButton > img {
+		margin: 0;
+	}
+	/*
+	 * OpenSearch ajax suggestions
+	 */
+
+	/* @noflip */
+	.os-suggest {	
+		right: auto;
+		left: 0;
+	} /* Fix suggestions location in Chrome/IE in RTL mode - left should've been noflip to begin with, in shared.css */
+	
+	#wr-footer-disclaimer {
+		text-align: center;
+		background-color: #D3D3D3;	/* lightgray */
+		font-weight: bold; 
+		font-size: 1.1em;
+		clear: both;
+	}
+	
+	#wr-footer-additional-disclaimers {
+	  clear: both;
+	}
+	
+/* Footer */
+div#footer {
+	/* WR override: no sidebar */ /* margin-left: 10em; */
+	/* margin-top: 0;*/
+	/* padding: 0.75em;*/
+	/* @embed */
+	/*background-image: url(images/border.png);
+	background-position: top left;`
+	background-repeat: repeat-x;
+	direction: ltr;*/
+}
+div#footer ul {
+	list-style: none;
+	list-style-image: none;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+div#footer ul li {
+	margin: 0;
+	padding: 0;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	color: #333333;
+	font-size: 0.7em;
+}
+div#footer #footer-icons {
+	float: right;
+}
+/* @noflip */
+body.ltr div#footer #footer-places {
+	float: none; /* WR override */ /* float: left; */ 
+}
+div#footer #footer-places {
+	font-size: 1.5em;
+}
+
+
+div#footer #footer-info li {
+	line-height: 1.4em;
+	text-align: center; /* WR addition */
+}
+div#footer #footer-icons li {
+	float: left;
+	margin-left: 0.5em;
+	line-height: 2em;
+}
+div#footer #footer-places li {
+	/* float: left; */ /* WR override: removed */
+	display: inline;	/* WR addition, with removal of "float" */
+	margin-right: 1em;
+	line-height: 2em;
+}
+
+/*
+ * 
+ * The following code is highly modified from monobook. It would be nice if the
+ * preftoc id was more human readable like preferences-toc for instance,
+ * howerver this would require backporting the other skins.
+ */
+
+/* Preferences */
+#preftoc {
+	/* Tabs */
+	width: 100%;
+	float: left;
+	clear: both;
+	margin: 0 !important;
+	padding: 0 !important;
+	/* @embed */
+	background-image: url(images/preferences-break.png);
+	background-position: bottom left;
+	background-repeat: no-repeat;
+}
+	#preftoc li {
+		/* Tab */
+		float: left;
+		margin: 0;
+		padding: 0;
+		padding-right: 1px;
+		height: 2.25em;
+		white-space: nowrap;
+		list-style-type: none;
+		list-style-image: none;
+		/* @embed */
+		background-image: url(images/preferences-break.png);
+		background-position: bottom right;
+		background-repeat: no-repeat;
+	}
+	/* Sadly, IE6 won't understand this */
+	#preftoc li:first-child {
+		margin-left: 1px;
+	}
+	#preftoc a,
+	#preftoc a:active {
+		display: inline-block;
+		position: relative;
+		color: #0645ad;
+		padding: 0.5em;
+		text-decoration: none;
+		background-image: none;
+		font-size: 0.9em;
+	}
+	#preftoc a:hover,
+	#preftoc a:focus {
+		text-decoration: underline;
+	}
+	#preftoc li.selected a {
+		/* @embed */
+		background-image: url(images/preferences-fade.png);
+		background-position: bottom;
+		background-repeat: repeat-x;
+		color: #333333;
+		text-decoration: none;
+	}
+#preferences {
+	float: left;
+	width: 100%;
+	margin: 0;
+	margin-top: -2px;
+	clear: both;
+	border: solid 1px #cccccc;
+	background-color: #f9f9f9;
+	/* @embed */
+	background-image: url(images/preferences-base.png);
+}
+#preferences fieldset.prefsection {
+	border: none;
+	padding: 0;
+	margin: 1em;
+}
+#preferences fieldset.prefsection fieldset {
+	border: none;
+	border-top: solid 1px #cccccc;
+}
+#preferences legend {
+	color: #666666;
+}
+#preferences fieldset.prefsection legend.mainLegend {
+	display: none;
+}
+#preferences td {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+#preferences td.htmlform-tip {
+	font-size: x-small;
+	padding: .2em 2em;
+	color: #666666;
+}
+#preferences div.mw-prefs-buttons {
+	padding: 1em;
+}
+#preferences div.mw-prefs-buttons input {
+	margin-right: 0.25em;
+}
+
+/* 
+ * Styles for the user login and create account forms
+ */
+#userlogin, #userloginForm {
+	border: solid 1px #cccccc;
+	padding: 1.2em;
+	margin: .5em;
+	float: left;
+}
+
+#userlogin {
+	min-width: 20em;
+	max-width: 90%;
+	width: 40em;
+}
+
+/*
+ * 
+ * The following code is slightly modified from monobook
+ * 
+ */
+div#content {
+	line-height: 1.5em;
+}
+#bodyContent {
+	font-size: 0.8em;
+}
+/* Links */
+a {
+	text-decoration: none;
+	color: #0645ad;
+	background: none;
+}
+a:visited {
+	color: #0b0080;
+}
+a:active {
+	color: #faa700;
+}
+a:hover, a:focus {
+	text-decoration: underline;
+}
+a.stub {
+	color: #772233;
+}
+a.new, #p-personal a.new {
+	color: #ba0000;
+}
+a.new:visited, #p-personal a.new:visited {
+	color: #a55858;
+}
+
+/* Inline Elements */
+img {
+	border: none;
+	vertical-align: middle;
+}
+hr {
+	height: 1px;
+	color: #aaa;
+	background-color: #aaa;
+	border: 0;
+	margin: .2em 0 .2em 0;
+}
+
+/* Structural Elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: black;
+	background: none;
+	font-weight: normal;
+	margin: 0;
+	overflow: hidden;
+	padding-top: .5em;
+	padding-bottom: .17em;
+	border-bottom: 1px solid #aaa;
+	width: auto;
+}
+h1 { font-size: 188%; }
+h1 .editsection { font-size: 53%; }
+h2 { font-size: 150%; }
+h2 .editsection { font-size: 67%; }
+h3,
+h4,
+h5,
+h6 {
+	border-bottom: none;
+	font-weight: bold;
+}
+h3 { font-size: 132%; }
+h3 .editsection { font-size: 76%; font-weight: normal; }
+h4 { font-size: 116%; }
+h4 .editsection { font-size: 86%; font-weight: normal; }
+h5 { font-size: 100%; }
+h5 .editsection { font-weight: normal; }
+h6 { font-size: 80%;  }
+h6 .editsection { font-size: 125%; font-weight: normal; }
+.editsection { float: right; }
+p {
+	margin: .4em 0 .5em 0;
+	line-height: 1.5em;
+}
+p img {
+	margin: 0;
+}
+q {
+	font-family: Times, "Times New Roman", serif;
+	font-style: italic;
+}
+/* Disabled for now
+blockquote {
+	font-family: Times, "Times New Roman", serif;
+	font-style: italic;
+}*/
+pre, code, tt, kbd, samp {
+	/*
+	 * It's important for this rule to first reference an actual font name, some browsers will render the monospace text
+	 * too small otherwise, namely Firefox, Chrome and Safari
+	 */
+	font-family: monospace, "Courier New";
+}
+code {
+	background-color: #f9f9f9;
+}
+pre {
+	padding: 1em;
+	border: 1px dashed #2f6fab;
+	color: black;
+	background-color: #f9f9f9;
+	line-height: 1.1em;
+}
+ul {
+	line-height: 1.5em;
+	list-style-type: square;
+	margin: .3em 0 0 1.5em;
+	padding: 0;
+	/* @embed */
+	list-style-image: url(images/bullet-icon.png);
+}
+ol {
+	line-height: 1.5em;
+	margin: .3em 0 0 3.2em;
+	padding: 0;
+	list-style-image: none;
+}
+li {
+	margin-bottom: .1em;
+}
+dt {
+	font-weight: bold;
+	margin-bottom: .1em;
+}
+dl {
+	margin-top: .2em;
+	margin-bottom: .5em;
+}
+dd {
+	line-height: 1.5em;
+	margin-left: 2em;
+	margin-bottom: .1em;
+}
+/* Tables */
+table {
+	font-size: 100%;
+}
+/* Forms */
+fieldset {
+	border: 1px solid #2f6fab;
+	margin: 1em 0 1em 0;
+	padding: 0 1em 1em;
+	line-height: 1.5em;
+}
+	fieldset.nested {
+		margin: 0 0 0.5em 0;
+		padding: 0 0.5em 0.5em;
+	}
+legend {
+	padding: .5em;
+	font-size: 95%;
+}
+form {
+	border: none;
+	margin: 0;
+}
+textarea {
+	width: 100%;
+	padding: .1em;
+}
+select {
+	vertical-align: top;
+}
+/* Table of Contents */
+#toc,
+.toc,
+.mw-warning {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+#toc h2,
+.toc h2 {
+	display: inline;
+	border: none;
+	padding: 0;
+	font-size: 100%;
+	font-weight: bold;
+}
+#toc #toctitle,
+.toc #toctitle,
+#toc .toctitle,
+.toc .toctitle {
+	text-align: center;
+}
+#toc ul,
+.toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
+}
+#toc ul ul,
+.toc ul ul {
+	margin: 0 0 0 2em;
+}
+#toc .toctoggle,
+.toc .toctoggle {
+	font-size: 94%;
+}
+/* Images */
+/*WR override: bug fix */ /* @noflip */ 
+div.floatright, table.floatright {
+	clear: right;
+	float: right;
+	position: relative;
+	margin: 0 0 .5em .5em;
+	border: 0;
+}
+div.floatright p { font-style: italic; }
+/*WR override: bug fix */ /* @noflip */
+div.floatleft, table.floatleft {
+	float: left;
+	clear: left;
+	position: relative;
+	margin: 0 .5em .5em 0;
+	border: 0;
+}
+div.floatleft p { font-style: italic; }
+/* Thumbnails */
+div.thumb {
+	margin-bottom: .5em;
+	width: auto;
+	background-color: transparent;
+}
+div.thumbinner {
+	border: 1px solid #ccc;
+	padding: 3px !important;
+	background-color: #f9f9f9;
+	font-size: 94%;
+	text-align: center;
+	overflow: hidden;
+}
+html .thumbimage {
+	border: 1px solid #ccc;
+}
+html .thumbcaption {
+	border: none;
+	text-align: left;
+	line-height: 1.4em;
+	padding: 3px !important;
+	font-size: 94%;
+}
+div.magnify {
+	float: right;
+	border: none !important;
+	background: none !important;
+}
+div.magnify a, div.magnify img {
+	display: block;
+	border: none !important;
+	background: none !important;
+}
+/* @noflip */
+div.tright {
+	clear: right;
+	float: right;
+	margin: .5em 0 1.3em 1.4em;
+}
+/* @noflip */
+div.tleft {
+	float: left;
+	clear: left;
+	margin: .5em 1.4em 1.3em 0;
+}
+img.thumbborder {
+	border: 1px solid #dddddd;
+}
+.hiddenStructure {
+	display: none;
+}
+/* Warning */
+.mw-warning {
+	margin-left: 50px;
+	margin-right: 50px;
+	text-align: center;
+}
+/* User Message */
+.usermessage {
+	background-color: #ffce7b;
+	border: 1px solid #ffa500;
+	color: black;
+	font-weight: bold;
+	margin: 2em 0 1em;
+	padding: .5em 1em;
+	vertical-align: middle;
+}
+/* Site Notice (includes notices from CentralNotice extension) */
+#siteNotice {
+	position: relative;
+	text-align: center;
+	font-size: 0.8em;
+	margin: 0;
+}
+#localNotice {
+	margin-bottom: 0.9em;
+}
+/* Categories */
+.catlinks {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	margin-top: .1em; /* WR Override */ /* margin-top: 1em; */
+	clear: both;
+}
+/* Sub-navigation */
+#siteSub {
+	display: none;
+}
+#jump-to-nav {
+	display: none;
+}
+#contentSub, #contentSub2 {
+	font-size: 84%;
+	line-height: 1.2em;
+	margin: 0 0 1.4em 1em;
+	color: #7d7d7d;
+	width: auto;
+}
+span.subpages {
+	display: block;
+}
+/* Emulate Center */
+.center {
+	width: 100%;
+	text-align: center;
+}
+*.center * {
+	margin-left: auto;
+	margin-right: auto;
+}
+/* Small for tables and similar */
+.small, .small * {
+	font-size: 94%;
+}
+table.small {
+	font-size: 100%;
+}
+/* Edge Cases for Content */
+h1, h2 {
+	margin-bottom: .6em;
+}
+h3, h4, h5 {
+	margin-bottom: .3em;
+}
+#firstHeadingRow {
+	/* Gradient based on http://www.colorzilla.com/gradient-editor/, setting "White 3D #2" w/ start/end colors reversed */
+	background: #f2f9fe; /* Old browsers */
+	background: -moz-linear-gradient(top, #d6f0fd 0%, #f2f9fe 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d6f0fd), color-stop(100%,#f2f9fe)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #d6f0fd 0%,#f2f9fe 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #d6f0fd 0%,#f2f9fe 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #d6f0fd 0%,#f2f9fe 100%); /* IE10+ */
+	background: linear-gradient(top, #f2f9fe 0%,#d6f0fd 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6f0fd', endColorstr='#f2f9fe',GradientType=0 ); /* IE6-9 */
+	/*
+	background-image: url("newimages/firstHeading.png");
+	    background-repeat: repeat;
+	    background-position: top left;
+	    background-color: #FFFFFF;
+	  */
+	    padding: 7px 2px 0 7px;
+	    /*position: relative;*/
+	    border: none;
+	    text-align: left;
+	    border-bottom-left-radius: 5px;
+	    border-bottom-right-radius: 5px;
+}
+	#firstHeading {
+		border-bottom: none;
+		line-height: 1.2em;
+		padding-top: 0;
+		margin-top: 0;
+		padding-top: 0;
+		margin-bottom: 0;
+		font-size: 1.6em;
+		padding-bottom: 0;
+	}
+	#firstHeadingBtns {
+		float: right;
+		margin-right: 5px;
+	}
+	
+		.facebookLikeBtn iframe {
+			border: none; 
+			overflow: hidden;
+			width: 135px; 
+			height: 20px; 
+			vertical-align: middle;
+		} /* iframe, css per facebook's recommendations */
+		#crBtn { 
+			font-size: 80%;
+			color: green;
+			font-weight: bold;
+		}
+
+div#content a.external,
+div#content a[href ^="gopher://"] {
+	/* @embed */
+	background: url(images/external-link-ltr-icon.png) center right no-repeat;
+	padding-right: 13px;
+}
+div#content a[href ^="https://"],
+.link-https {
+	/* @embed */
+	background: url(images/lock-icon.png) center right no-repeat;
+	padding-right: 13px;
+}
+div#content a[href ^="mailto:"],
+.link-mailto {
+	/* @embed */
+	background: url(images/mail-icon.png) center right no-repeat;
+	padding-right: 13px;
+}
+div#content a[href ^="news://"] {
+	/* @embed */
+	background: url(images/news-icon.png) center right no-repeat;
+	padding-right: 13px;
+}
+div#content a[href ^="ftp://"],
+.link-ftp {
+	/* @embed */
+	background: url(images/file-icon.png) center right no-repeat;
+	padding-right: 13px;
+}
+div#content a[href ^="irc://"],
+div#content a.extiw[href ^="irc://"],
+.link-irc {
+	/* @embed */
+	background: url(images/talk-icon.png) center right no-repeat;
+	padding-right: 13px;
+}
+div#content a.external[href $=".ogg"], div#content a.external[href $=".OGG"],
+div#content a.external[href $=".mid"], div#content a.external[href $=".MID"],
+div#content a.external[href $=".midi"], div#content a.external[href $=".MIDI"],
+div#content a.external[href $=".mp3"], div#content a.external[href $=".MP3"],
+div#content a.external[href $=".wav"], div#content a.external[href $=".WAV"],
+div#content a.external[href $=".wma"], div#content a.external[href $=".WMA"],
+.link-audio {
+	/* @embed */
+	background: url("images/audio-icon.png?2") center right no-repeat;
+	padding-right: 13px;
+}
+div#content a.external[href $=".ogm"], div#content a.external[href $=".OGM"],
+div#content a.external[href $=".avi"], div#content a.external[href $=".AVI"],
+div#content a.external[href $=".mpeg"], div#content a.external[href $=".MPEG"],
+div#content a.external[href $=".mpg"], div#content a.external[href $=".MPG"],
+.link-video {
+	/* @embed */
+	background: url("images/video-icon.png?2") center right no-repeat;
+	padding-right: 13px;
+}
+div#content a.external[href $=".pdf"], div#content a.external[href $=".PDF"],
+div#content a.external[href *=".pdf#"], div#content a.external[href *=".PDF#"],
+div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
+.link-document {
+	/* @embed */
+	background: url("images/document-icon.png?2") center right no-repeat;
+	padding-right: 13px;
+}
+/* Interwiki Styling  (Disabled) */
+div#content a.extiw,
+div#content a.extiw:active {
+	color: #36b;
+	background: none;
+	padding: 0;
+}
+div#content a.external {
+	color: #36b;
+}
+div#content .printfooter {
+	display: none;
+}
+/* Icon for Usernames */
+#pt-userpage,
+#pt-anonuserpage,
+#pt-login {
+	/* @embed */
+	/* background: url(images/user-icon.png) left top no-repeat;
+	padding-left: 15px !important;*/
+	text-transform: none;
+}
+
+.toccolours {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+#bodyContent {
+	position: relative;
+	/* width: 100%; */
+}
+#mw-js-message {
+	font-size: 0.8em;
+}
+div#bodyContent {
+	line-height: 1.5em;
+}
+
+/* Watch/Unwatch Icon Styling */
+#ca-unwatch.icon,
+#ca-watch.icon {
+	margin-right:1px;
+}
+#ca-unwatch.icon a,
+#ca-watch.icon a {
+	outline: none;
+	display: inline-block;
+	width: 26px;
+	/* height: 16px; */
+	color: transparent;
+	/* This hides the text but shows the background image */
+	height: 0; 
+	padding-top: 16px;
+	/* text-indent: -8888px; */
+	overflow: hidden;
+	/* @embed */
+	background-image: url(images/watch-icons.png);
+	background-repeat: no-repeat;
+}
+#ca-unwatch.icon a {
+	background-position: -43px 60%;
+}
+#ca-watch.icon a {
+	background-position: 5px 60%;
+}
+#ca-unwatch.icon a:hover,
+#ca-unwatch.icon a:focus {
+	background-position: -67px 60%;
+}
+#ca-watch.icon a:hover,
+#ca-watch.icon a:focus {
+	background-position: -19px 60%;
+}
+#ca-unwatch.icon a.loading,
+#ca-watch.icon a.loading {
+	/* @embed */
+	background-image: url(images/watch-icon-loading.gif);
+	background-position: 5px 60%;
+}
+#ca-unwatch.icon a span,
+#ca-watch.icon a span {
+	display: none;
+}
+
+/* Convenience links to edit block, delete and protect reasons */
+p.mw-ipb-conveniencelinks, p.mw-protect-editreasons,
+p.mw-filedelete-editreasons, p.mw-delete-editreasons {
+	float: right;
+}
+
+/* Tooltips are outside of the normal body code, so this helps make the size of the text sensible */
+.tipsy {
+	font-size: 0.8em;
+}
+
+
+
+/************************************/
+
+#page-wrap {
+	min-width: 780px;
+	max-width: 1260px;
+	margin: 0 auto;
+}
+
+div#scrollPage {
+	position: relative;
+}
+	
+	
+div#content {
+	background-image: none;
+	/*padding-top: 20px;*/
+	position: inherit;
+	
+	/* border: 1px solid #A7D7F9;*/
+	background-color: white;
+	/*padding: 0;*/
+	margin-top: 0;
+}
+#bodyContent {
+	/*width: auto;
+	padding: 1em;
+	border-radius: 5px;*/
+}
+
+#page-wrap div#headerWrapper {
+	min-width: 780px;
+	max-width: 1260px;
+	width: 100%;
+	z-index: 50;
+	background-color: #E7F5FF;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+div#header {
+	position: relative;
+	min-width: 780px;
+	max-width: 1260px;
+	/*width: 100%;*/
+	z-index: 50;
+	/*background-color: #A7D7F9;*/
+	text-align: center;
+	/* padding: 0.75em 0 0;*/
+	background-color: white;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #A7D7F9;
+	
+}
+	.newinlinelist ul {
+		margin: 0;
+		padding: 0;
+		display: inline;
+	} 
+
+		.newinlinelist ul li {
+			margin-left: 0;
+			padding-left: 0.3em;
+			list-style: none;
+			display: inline-block;
+			*display: inline; /* IE 7< hack */
+			*zoom: 1; /* IE 7< hack */
+			/* border-left: 1px solid white; */
+			/* @embed */
+			background-image: url("newimages/separation_line.png");
+			background-repeat: no-repeat; 
+			background-position: left;										
+		}
+			/* Sadly, IE6 won't understand this */
+			.newinlinelist ul li:first-child {
+				background-image: none;
+				padding-left: 0;
+			}
+			/* So, when possible, we'll use HTML markup just for IE6 */
+			.newinlinelist ul li.first-child {
+				background-image: none;
+				padding-left: 0;
+			}
+			
+
+
+	div#banner {
+		/* @embed */
+		background-image: url("newimages/bg_pixel.png");
+		background-repeat: repeat-x;
+		background-position: top left;
+		height: 64px;
+		position: relative;
+		zoom: 1;
+	}
+		div#banner div.pretty-banner-bg {
+			/* @embed */
+			background-image: url("newimages/bg-ltr.png");
+			background-repeat: no-repeat;
+			background-position: top right;	
+			position: absolute;
+			right: 0;
+			top: 0;
+			height: 64px;
+			width: 778px;
+			
+		}
+		div#logoWrapper {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding-left: 10px;
+			height: 64px;
+			text-align: left;
+		}
+		div#logo {
+			/*height: 64px;*/
+			width: 250px;
+			/*margin-left: 10px;*/
+			z-index: 100;
+		}
+		
+			div#logo a {
+				background-repeat: no-repeat;
+				background-position: top left;
+				height: 42px;
+				display: block;	
+				float: left;
+			}
+			div#logo a.logo1 {
+				width: 156px;
+			}
+			div#logo a.logo2 {
+				width: 94px;	
+			}
+			#slogan {
+				color: white;
+				height: 22px; /* 64px(logoWrapper) - 42px(logo) = 22px */
+				line-height: 22px;
+				position: relative;
+				bottom: 1px;
+				
+			}
+				#slogan a {
+					color: white;
+					text-decoration: none;
+					cursor: pointer;
+				}
+				#slogan a:hover {
+					color: black;
+				}
+					#slogan a:hover #slogan-about-inner {
+						/* @embed */
+						background-image: url("newimages/about_sel.png");
+					}
+				#slogan .slogan-text {
+					font-size: 22px;
+					font-weight: bold;
+					font-family: Serif, Arial, sans-serif;
+					text-shadow: 2px 0 4px black;
+				}
+				#slogan a:hover .slogan-text {
+				    text-shadow: none;
+				}
+				#slogan-about {
+					font-size: 14px;
+				}
+					#slogan-about-inner {
+						/* @embed */
+						background-image: url("newimages/about_reg.png");
+						background-repeat: no-repeat;
+						background-position: right center;
+						padding-right: 18px;
+						display: inline-block; /* Fixes icon padding in rtl */ 
+						
+					}
+		div#top-menu {
+			position: absolute;
+			top: 0;
+			right: 10px;
+		}
+			div#top-menu ul {
+				margin-top: 0;
+				line-height: 1em;
+			}
+			div#top-menu ul li a {
+				color: white;	
+			}
+			div#top-menu ul li a:hover {
+				color: black;	
+			}
+		div#top-controls {
+			position: absolute;
+			bottom: 0;
+			right: 10px;
+		}
+		div#top-controls ul {
+			line-height: 1.4em;
+		}
+		
+		div#top-controls ul li a {
+			background-repeat: no-repeat;
+			display: inline-block;
+			width: 19px;
+			height: 19px;
+			vertical-align: bottom;
+		}
+			#homeBtn {
+				/* @embed */
+				background-image: url("newimages/home_reg.png");
+			}
+			#homeBtn:hover, #homeBtn.selected {
+				/* @embed */
+				background-image: url("newimages/home_sel.png");
+			}
+			.fontBtn {
+				/* @embed */
+				background-image: url("newimages/btn_reg.png");
+				color: #3F8FD3; /* sort of a Light Blue */
+				font-weight: bold;
+				text-decoration: none;
+				line-height: 19px;
+			}
+			.fontBtn:visited {
+				color: #3F8FD3; /* sort of a Light Blue */ /* We do not want the buttons to change colors */
+			}
+			.fontBtn:hover, .fontBtn.selected {
+				/* @embed */
+				background-image: url("newimages/btn_sel.png");
+				color: #0E3B5E; /* sort of a Dark Blue */
+				text-decoration: none;
+			}
+			
+			.fontBtn span {
+			}
+			
+			#BigFontBtn {
+				font-size: 19px;
+			}
+			#MedFontBtn {
+				font-size: 16px;
+
+			}
+			#RegFontBtn {
+				font-size: 13px;
+			}
+
+			
+						
+		ul.inlineList {
+			list-style: none;
+			padding: 0; 
+			margin: auto;
+			line-height: inherit;
+		}
+		ul.inlineList li { 
+			display: block;
+			overflow: visible;
+			margin: 0;
+			/*float: right;*/
+			background-repeat: no-repeat; 
+			background-position: left;
+			padding-left: 5px;
+			padding-right: 5px;
+			float: left;
+		}
+			/* Sadly, IE6 won't understand this */
+			ul.inlineList li:first-child {	
+				background-image: none;
+				padding-left: 0;	
+			}			
+			ul.inlineList li:last-child {	
+				padding-right: 0;	
+			}
+			ul.inlineList li span {
+				display: block;
+			}
+			/* @noflip */
+			ul.inlineList li span {
+				float: left;	
+			}
+		
+/* Frame for any on-screen content */		
+.pageSection {
+	padding: 0.5em;
+	border: 1px solid #A7D7F9;
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+	
+div#page-links {
+	text-align: center;	
+}
+div#user-links {
+	text-align: center;
+}
+
+div#footer {
+	text-align: center;
+	/*color: white;*/
+	/*border: 1px solid #A7D7F9;*/
+	/* margin-bottom: 2em;*/
+	/*border-radius: 5px;*/
+	margin-bottom: 0;
+}
+
+	.wr-footer {
+		text-align: left; /* page footer location */
+		/* @embed */
+		background-image: url("images/stripe-grey.gif");
+		background-color: transparent; 
+		background-position: top left;
+		background-repeat: repeat;
+		padding: 5px 0 0;
+	}
+
+	.wr-footer-tools a { font-family: Verdana,'Trebuchet MS', Georgia, Sans-serif, Arial; text-decoration: none; }
+	.wr-footer-tools { list-style: none; padding: 0; margin: 0; text-align: center; }
+	.wr-footer-tools li { 
+		display: inline; 
+		overflow: visible; 
+		margin: 0; 
+		border-left-color: DarkGray;
+		border-left-style: solid;
+		border-left-width: 1px;
+	}
+	
+	.wr-footer-tools li:first-child {
+		border-left: none;		
+	}
+	.wr-footer-tools li a { 
+		color: #777;
+		padding: 3px 5px; 
+	}
+	.wr-footer-tools li a:hover { color: #333; }
+
+	#editorToolbar ul.wr-footer-tools li a {
+		color: black;
+		font-weight: bold; 
+	}
+	#editorToolbar ul.wr-footer-tools li:hover { 
+		border-top: 3px solid black;
+	}
+	
+	#editorToolbar ul.wr-footer-tools li#ca-viewsource:hover { 
+		border-top: none;
+	}
+	
+	
+	#editorToolbar ul.wr-footer-tools li#wr-last-update a {
+		font-size: 85%;
+		font-weight: normal;
+	}
+	#editorToolbar ul.wr-footer-tools li#ca-viewsource a {
+		color: grey;
+		font-weight: normal;
+	}
+	#editorToolbar ul.wr-footer-tools li#ca-viewsource a:hover {
+		cursor: text;
+		
+	}
+	
+	#page-wrap #editorToolbar {
+		position: absolute; /* OVERRIDDEN BY COMPLIANT BROWSERS */
+		bottom: 0;
+		min-width: 780px;
+		max-width: 1260px;
+		width: 100%;
+		
+		z-index: 100;
+		/*padding: 0;
+		margin: 0 0.5%;
+		width: 99%;*/
+		text-align: center;
+		border-radius: 7px 0 0 7px;
+		/*display: none;*/
+	}
+	/* IGNORED BY IE6 */
+	#page-wrap > #editorToolbar {
+		position: fixed;
+	}
+	#editorToolbar ul {
+		line-height: inherit;		
+	}
+	
+/* wikitable blue class for skinning normal tables */
+table.blue {
+    margin: 1em 1em 1em 0;
+    background: #EFF7FF;
+    border: 1px #A5B6CF solid;
+    border-collapse: collapse;
+}
+.blue th, .blue td {
+    border: 1px #A5B6CF solid;
+    padding: 0.2em;
+}
+.blue th {
+    background: #BCD9F4;
+    text-align: center;
+}
+.blue caption {
+    font-weight: bold;
+}
+
+/* Allow limiting of which header levels are shown in a TOC; 
+   <div class="toclimit-3">, for instance, will limit to
+   showing ==headings== and ===headings=== but no further.
+*/
+.toclimit-1 .toclevel-1 ul,
+.toclimit-2 .toclevel-2 ul,
+.toclimit-3 .toclevel-3 ul,
+.toclimit-4 .toclevel-4 ul,
+.toclimit-5 .toclevel-5 ul,
+.toclimit-6 .toclevel-6 ul { 
+    display: none;
+}
+
+/* We place ==endarticle== at the end of portals to make #lsth (heading-based transclusion) to work correctly, 
+  that is, have a stop point. We then proceed to hiding it using CSS. */
+#internal_right_column h2:last-child {
+	display: none;	
+}
+/* Unfortunately, older browser won't recognize :last-child, so for them we hide only the text of the heading */
+span#endarticle {
+	display: none;	
+}
+/* Hide it from TOC as well */
+li.toclevel-1 a[href ^="#endarticle"] {
+	display: none;
+}
+
+/* Preformatted text with wrapping */
+pre.wordwrap {
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.collapseButton {          /* 'show'/'hide' buttons created dynamically  */
+    float: left;           /* by the CollapsibleTables javascript in     */
+    font-weight: normal;   /* [[MediaWiki:CollapseTables.js]] are styled */
+    text-align: left;      /* here so they can be customised.            */
+    width: auto;
+}
+
+/* Changing jUI CSS defaults */
+
+.ui-widget-content a { 
+  color: #0645AD !important; 
+} /*WR: keep default MW link color */
+
+.ui-widget {
+  font-family: Arial, sans-serif !important;
+  font-size: 100% !important;
+} /* WR: keep our font style */
+
+/* @noflip */
+.ui-tabs .ui-tabs-nav li a { 
+	float: left !important; 
+} /* WR: fix Hebrew tab display in IE
+
+/* END jUI css overrides */
+
